@@ -39,3 +39,10 @@ This Python script processes multiple Excel files containing transaction data, f
 Install the required Python libraries using:
 ```bash
 pip install pandas
+
+<img width="379" alt="su1" src="https://github.com/user-attachments/assets/444e1c48-b769-45ae-ad3a-97f5f55b5c77" />
+
+
+
+
+
