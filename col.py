@@ -42,6 +42,10 @@ merged_df.fillna("", inplace=True)
 columns_order = ['Transactions'] + [f'Report {i} time(90%)' for i in range(1, len(excel_files) + 1)]
 merged_df = merged_df[columns_order]
 
+# Calculate the variance between Report 4 and Report 5 (if both exist)
+if 'Report 4 time(90%)' in merged_df.columns and 'Report 5 time(90%)' in merged_df.columns:
+    merged_df['Variance (Report 4 to Report 5)'] = merged_df['Report 5 time(90%)'] - merged_df['Report 4 time(90%)']
+
 # Write the merged DataFrame to an Excel file
 merged_df.to_excel(output_file, index=False)
 
@@ -53,6 +57,7 @@ ws = wb.active
 green_font = Font(color="00FF00")   # Green
 orange_font = Font(color="FFA500") # Orange
 red_font = Font(color="FF0000")    # Red
+black_font = Font(color="000000")  # Black (for variance column)
 
 # Loop through the cells to apply formatting
 for row in ws.iter_rows(min_row=2, max_row=ws.max_row, min_col=2, max_col=ws.max_column):
@@ -64,6 +69,12 @@ for row in ws.iter_rows(min_row=2, max_row=ws.max_row, min_col=2, max_col=ws.max
                 cell.font = orange_font
             else:
                 cell.font = green_font
+
+# Set font color to black for the "Variance" column (if it exists)
+if 'Variance (Report 4 to Report 5)' in merged_df.columns:
+    for row in ws.iter_rows(min_row=2, max_row=ws.max_row, min_col=len(merged_df.columns), max_col=len(merged_df.columns)):
+        for cell in row:
+            cell.font = black_font
 
 # Save the workbook
 wb.save(output_file)
