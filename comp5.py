@@ -61,10 +61,10 @@ wb = load_workbook(output_file)
 ws = wb.active
 
 # Define font colors
-green_font = Font(color="00FF00")   # Green
-orange_font = Font(color="FFA500") # Orange
-red_font = Font(color="FF0000")    # Red
-black_font = Font(color="000000")  # Black (for variance columns)
+green_font = Font(color="00b300",bold=True)   # Green
+orange_font = Font(color="FFA500",bold=True) # Orange
+red_font = Font(color="FF0000",bold=True)    # Red
+black_font = Font(color="000000",bold=True)  # Black (for variance columns)
 
 # Loop through the cells to apply formatting
 for row in ws.iter_rows(min_row=2, max_row=ws.max_row, min_col=2, max_col=ws.max_column):
