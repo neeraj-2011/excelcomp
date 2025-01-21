@@ -48,7 +48,8 @@ if 'R5' in merged_df.columns:
     for i in range(1, 5):
         report_column = f'R{i}'
         variance_column = f'R5 Vs R{i}'
-        merged_df[variance_column] = merged_df['R5'] - merged_df[report_column]
+        merged_df[variance_column] = ((merged_df['R5'] - merged_df[report_column])/merged_df['R5'])*100
+
 
 # Reorder the columns to include the new variance columns
 variance_columns = [f'R5 Vs R{i}' for i in range(1, 5)]
@@ -68,9 +69,9 @@ orange_font = Font(color="FFA500", bold=True) # Orange
 red_font = Font(color="FF0000", bold=True)    # Red
 black_font = Font(color="000000", bold=True)  # Black (for variance columns)
 
-up_arrow = "↑"
-down_arrow = "↓"
-no_change = "→"
+up_arrow = "% ↑"
+down_arrow = "% ↓"
+no_change = "% →"
 
 # Define the border style
 thin_border = Border(
